@@ -6,7 +6,7 @@
 #    By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 15:00:00 by mcastres          #+#    #+#              #
-#    Updated: 2017/03/17 17:35:21 by mcastres         ###   ########.fr        #
+#    Updated: 2017/03/18 16:53:09 by mcastres         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,10 @@ FLAGS = -Wall -Wextra -Werror
 
 #SRCS
 SRCS =	srcs/main.c \
-		srcs/out.c \
+		srcs/out.c  \
 		srcs/term.c \
+		srcs/list.c \
+		srcs/display.c \
 
 #INCLUDES
 INCLUDES = includes/ft_select.h
@@ -45,7 +47,7 @@ $(NAME): $(OBJ)
 	@echo "Compiling" [$(NAME)] "..."
 	@make -C libft/
 	@make -C libft/ft_printf/
-	@gcc -I includes libft/libft.a libft/ft_printf/srcs/libftprintf.a -o $(NAME) $(SRCS) -lreadline -ltermcap
+	@gcc -I includes libft/libft.a libft/ft_printf/srcs/libftprintf.a -o $(NAME) $(SRCS) -lreadline -ltermcap -g
 	@clear
 	@echo "Compiling" [$(NAME)] $(SUCCESS)
 

@@ -6,46 +6,61 @@
 /*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 11:46:42 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/17 17:52:18 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/18 16:54:26 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-int     voir_touche(t_list *list)
+static void 	down_up(t_select *list, int key)
 {
-  char     buffer[3];
+	/* Ici ca bug quand tu appuies sur les fleches pour l'instant, fais CTR+C puis relance le programmer et fais echap sinon tu vas pleurer */
+	
+	if (key == DOWN)
+	{
+		list->selected++;
+		if (list->selected > list->content_size - 1)
+			list->selected = 0;
+	}
+	else
+	{
+		list->selected--;
+		if (list->selected < 0)
+			list->selected = list->selected - 1;
+	}
+}
 
-  ft_print_list(list);
-  while (1)
-  {
-    read(0, buffer, 3);
-    if (buffer[0] == 27)
-      printf("C'est une fleche !\n");
-    else if (buffer[0] == 4)
+static void     loop(t_select *list)
+{
+	unsigned long	key;
+
+	key = 0;
+    while (read(0, &key, 6))
     {
-      printf("Ctlr+d, on quitte !\n");
-      return (0);
+		if (key == BACKSPACE || key == DELETE)
+			ft_putendl("DELETE");
+		else if (key == DOWN || key == UP)
+			down_up(list, key);
+		else if (key == ESCAPE)
+		{
+			ft_putendl("DELETE");
+			return ;
+		}
     }
-  }
-  return (0);
 }
 
 int		main(int argc, char **argv)
 {
-	struct termios	term;
-	int				i;
-	t_list			*list;
+	t_select		*list;
 
-	i = 0;
-	list = NULL;
-	while (++i < argc)
-		ft_lstpushback(&list, argv[i], ft_strlen(argv[i]) + 1);
-
-	start_term(&term);
-	voir_touche(list);
-	exit_term(&term);
-
-
+	if (argc < 2)
+		return (ft_printf("Usage : ./ft_select [arg1] ...\n"));
+	if (!(list = (t_select *)malloc(sizeof(t_select))))
+		return (0);
+	init_select(list, argc, argv); 	/* Initialisation de la structure */
+	start_term(list);				/* Initialisation du terminal */
+	display(list);					/* Fonction qui doit clear la page et afficher les arguments */
+	loop(list);						/* Boucle infinie qui interagie en fonction des touche presse comme ta daronne */
+	exit_term(list);				/* On quitte le term */
 	return (0);
 }
