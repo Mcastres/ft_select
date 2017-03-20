@@ -6,20 +6,20 @@
 /*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 10:32:04 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/17 15:14:51 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/02/23 15:36:10 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putab(char **tableau)
+void	ft_putab(char **tab)
 {
 	size_t	i;
 
 	i = 0;
-	while (tableau[i])
+	while (tab[i])
 	{
-		ft_putendl(tableau[i]);
+		ft_putendl(tab[i]);
 		i++;
 	}
 }

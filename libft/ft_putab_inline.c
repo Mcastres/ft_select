@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   ft_putab_inline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/07 11:46:42 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/18 16:51:58 by mcastres         ###   ########.fr       */
+/*   Created: 2017/03/19 14:19:45 by hmadad            #+#    #+#             */
+/*   Updated: 2017/03/20 16:52:35 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_select.h"
+#include "libft.h"
 
-void 	display(t_select *list)
+void	ft_putab_inline(char **content)
 {
-	/* Insert ton code soit pas timide fdp */
-	
-	tgoto(tgetstr("cm", NULL), 0, 0);
-	ft_putab(list->content);
+	int		i;
+
+	i = 0;
+	while (content[i])
+	{
+		ft_putstr(content[i]);
+		if (content[i + 1])
+			ft_putstr(" ");
+		i++;
+	}
 }

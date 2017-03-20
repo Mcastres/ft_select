@@ -6,8 +6,9 @@
 #    By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 15:00:00 by mcastres          #+#    #+#              #
-#    Updated: 2017/03/18 16:53:09 by mcastres         ###   ########.fr        #
+#    Updated: 2017/03/20 09:35:17 by mcastres         ###   ########.fr        #
 #                                                                              #
+# **************************************************************************** #
 # **************************************************************************** #
 
 #Name
@@ -17,11 +18,15 @@ NAME = ft_select
 FLAGS = -Wall -Wextra -Werror
 
 #SRCS
-SRCS =	srcs/main.c \
-		srcs/out.c  \
-		srcs/term.c \
-		srcs/list.c \
-		srcs/display.c \
+SRCS =	srcs/ft_select.c \
+		srcs/ft_init_term.c \
+		srcs/ft_ltos.c \
+		srcs/ft_read_commande.c \
+		srcs/main.c \
+		srcs/ft_arrow_key.c \
+		srcs/ft_print_all.c \
+		srcs/ft_putc.c \
+		srcs/ft_valide_select.c \
 
 #INCLUDES
 INCLUDES = includes/ft_select.h

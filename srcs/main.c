@@ -3,64 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/07 11:46:42 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/18 16:54:26 by mcastres         ###   ########.fr       */
+/*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
+/*   Updated: 2017/03/20 16:31:44 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_select.h"
+#include "ft_select.h"
 
-static void 	down_up(t_select *list, int key)
+void		ft_modify_args(t_select **select, int nb)
 {
-	/* Ici ca bug quand tu appuies sur les fleches pour l'instant, fais CTR+C puis relance le programmer et fais echap sinon tu vas pleurer */
-	
-	if (key == DOWN)
+	t_select	*s;
+	t_args		*new;
+	int			i;
+	int			j;
+
+	s = *select;
+	i = -1;
+	j = 0;
+	if (!(new = (t_args *)malloc(sizeof(t_args) * nb)))
+		return ;
+	new[nb].str = NULL;
+	while (++i < nb)
 	{
-		list->selected++;
-		if (list->selected > list->content_size - 1)
-			list->selected = 0;
+		if (i != s->cursor_line - 1)
+			new[j].str = ft_strdup(s->args[i].str);
+		else
+			j--;
+		new[i].select = 0;
+		j++;
 	}
-	else
-	{
-		list->selected--;
-		if (list->selected < 0)
-			list->selected = list->selected - 1;
-	}
+	free(s->args);
+	s->args = new;
+	s->nb_args--;
+	if (s->cursor_line - 1 == s->nb_args)
+		s->cursor_line--;
 }
 
-static void     loop(t_select *list)
+static int	ft_init_args(t_select **select, char **av, int ac)
 {
-	unsigned long	key;
+	t_select	*s;
+	t_args		*args;
+	int			i;
+	int			len;
 
-	key = 0;
-    while (read(0, &key, 6))
-    {
-		if (key == BACKSPACE || key == DELETE)
-			ft_putendl("DELETE");
-		else if (key == DOWN || key == UP)
-			down_up(list, key);
-		else if (key == ESCAPE)
-		{
-			ft_putendl("DELETE");
-			return ;
-		}
-    }
-}
-
-int		main(int argc, char **argv)
-{
-	t_select		*list;
-
-	if (argc < 2)
-		return (ft_printf("Usage : ./ft_select [arg1] ...\n"));
-	if (!(list = (t_select *)malloc(sizeof(t_select))))
+	s = *select;
+	i = 0;
+	if (!(args = (t_args *)malloc(sizeof(t_args) * ac)))
 		return (0);
-	init_select(list, argc, argv); 	/* Initialisation de la structure */
-	start_term(list);				/* Initialisation du terminal */
-	display(list);					/* Fonction qui doit clear la page et afficher les arguments */
-	loop(list);						/* Boucle infinie qui interagie en fonction des touche presse comme ta daronne */
-	exit_term(list);				/* On quitte le term */
+	args[ac - 1].str = NULL;
+	while (av[i])
+	{
+		if ((len = ft_strlen(av[i])) > s->max_strlen)
+			s->max_strlen = len;
+		args[i].str = ft_strdup(av[i]);
+		args[i].select = 0;
+		i++;
+	}
+	s->args = args;
+	return (0);
+}
+
+int			main(int ac, char **av, char **env)
+{
+	t_select	*select;
+
+	if (!(select = (t_select *)malloc(sizeof(t_select))))
+		return (0);
+	select->nb_args = ac - 1;
+	select->cursor_line = 1;
+	select->max_strlen = 0;
+	if (ac > 1)
+	{
+		select->env = ft_tabdup(env);
+		ft_init_args(&select, (av + 1), ac);
+		ft_select(&select);
+	}
 	return (0);
 }

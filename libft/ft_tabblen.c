@@ -6,18 +6,18 @@
 /*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 09:30:41 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/17 15:15:34 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/14 13:08:40 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_tabblen(char ***tableau)
+size_t		ft_tabblen(char ***tab)
 {
 	size_t	i;
 
 	i = 0;
-	while (tableau[i])
+	while (tab[i])
 		i++;
 	return (i);
 }

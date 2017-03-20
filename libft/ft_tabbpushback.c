@@ -6,28 +6,28 @@
 /*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 09:30:41 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/17 15:15:46 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/15 10:42:14 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	***ft_tabbpushback(char ***tableau, char **content)
+char	***ft_tabbpushback(char ***tab, char **content)
 {
 	char	***new;
 	int		i;
 	int		size;
 
 	i = -1;
-	if (tableau == NULL)
+	if (tab == NULL)
 		return ((new = ft_tabbcreate(content)));
-	size = (ft_tabblen(tableau) + 1);
+	size = (ft_tabblen(tab) + 1);
 	if (!(new = (char ***)malloc(sizeof(char **) * size + 1)))
 		return (NULL);
-	while (tableau[++i])
-		new[i] = ft_tabdup(tableau[i]);
+	while (tab[++i])
+		new[i] = ft_tabdup(tab[i]);
 	new[i] = ft_tabdup(content);
 	new[++i] = NULL;
-	ft_freetabb((void ***)tableau, ft_tabblen(tableau));
+	ft_freetabb((void ***)tab, ft_tabblen(tab));
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: mcastres <mcastres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 09:30:41 by mcastres          #+#    #+#             */
-/*   Updated: 2017/03/17 15:18:24 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:52:53 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,32 @@ typedef	struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-char			***ft_tabbpushback(char ***tableau, char **content);
-void			ft_freetabb(void ***tableau, int len);
+void			ft_putab_inline(char **content);
+char			*ft_free_join(char const *s1, char const *s2, char c);
+char			***ft_tabbpushback(char ***tab, char **content);
+void			ft_freetabb(void ***tab, int len);
 char			***ft_tabbcreate(char **content);
-size_t			ft_tabblen(char ***tableau);
+size_t			ft_tabblen(char ***tab);
 char			*ft_getcwd(void);
 char			*ft_removelastslash(char *str);
 char			*ft_removendslash(char *str);
 char			*ft_triplejoin(char *s1, char *s2);
-void			ft_freetab(void **tableau, int len);
+void			ft_freetab(void **tab, int len);
 int				ft_open(char *file);
 int				ft_opendir(char *directory);
 int				ft_isenv(char *env_line, char *name);
 char			*ft_escapequote(char const *s);
 void			ft_tabtospace(char *str);
-char			**ft_tabdup(char **tableau);
-char			**ft_tabtrim(char **tableau);
-int				ft_putabenv(char **tableau);
+char			**ft_tabdup(char **tab);
+char			**ft_tabtrim(char **tab);
+int				ft_putabenv(char **tab);
 int				ft_isupper(int c);
 int				ft_islower(int c);
 char			**ft_tabcreate(char *content);
-char			**ft_tabpushback(char **tableau, char *content);
-char			**ft_tabdelone(char **data, char *content, int size, int j);
-size_t			ft_tablen(char **tableau);
+char			**ft_tabpushback(char **tab, char *content);
+char			**ft_tabdelone(char **tab, char *content, int size, int j);
+size_t			ft_tablen(char **tab);
+void			ft_strtrimtab(char **tab, char c);
 int				ft_thereisnothing(char	*str);
 void			ft_lstfree(t_list *list);
 void			ft_del(void *data, size_t data_size);
@@ -65,7 +68,7 @@ void			ft_lstpushback(t_list **blst, void const *content, \
 		size_t content_size);
 void			ft_lstpushfront(t_list **blst, void const *content, \
 		size_t content_size);
-void			ft_putab(char **tableau);
+void			ft_putab(char **tab);
 void			ft_print_list(t_list *list);
 int				ft_hashtab(char *str, int tab_size);
 char			*ft_rot42(char *str);
