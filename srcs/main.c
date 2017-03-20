@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 16:31:44 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/20 17:39:09 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		ft_modify_args(t_select **select, int nb)
 		new[i].select = 0;
 		j++;
 	}
-	free(s->args);
 	s->args = new;
 	s->nb_args--;
 	if (s->cursor_line - 1 == s->nb_args)

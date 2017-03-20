@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:00:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 16:51:26 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/20 17:22:35 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ void			ft_read_commande(t_select **select)
 			ft_escape(select, NULL);
 		else if (buf[0] == 126 || buf[0] == 127)
 			ft_delete(select);
+		if (!s->args[0].str)
+			ft_escape(select, NULL);
 	}
 }
