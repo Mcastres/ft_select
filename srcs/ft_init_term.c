@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 16:27:15 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:04:38 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ static int		ft_modif_term(t_select **select)
 	return (0);
 }
 
-static void		ft_find_window_len(t_select **select)
+int				ft_find_window_len(t_select **select)
 {
-	t_select	*s;
+	struct winsize	w;
+	t_select		*s;
+	int				col;
 
 	s = *select;
-	s->width = tgetnum("co");
-	s->height = tgetnum("li");
-	ft_putstr("Taille de l'ecran:\n\tWidth = ");
-	ft_putnbr(s->width);
-	ft_putstr("\n\tHeight = ");
-	ft_putnbr(s->height);
-	ft_putchar('\n');
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	s->width = w.ws_col;
+	s->height = w.ws_row;
+	col = s->nb_args / s->height;
+	return ((col * s->max_strlen) < s->width);
 }
 
 void			ft_init_term(t_select **select)

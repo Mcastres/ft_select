@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:06:21 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 17:31:10 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/21 17:40:49 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void		print_again(t_select **select, int i, char *cap)
 		tputs(cap, 0, ft_putc);
 	ft_putstr(s->args[i].str);
 	if ((cap = tgetstr("ue", NULL)) == NULL)
-		ft_putstr("Cannot set the en of underline mode\n");
+		ft_putstr("Cannot set the end of underline mode\n");
 	else
 		tputs(cap, 0, ft_putc);
 	print_close(select, i, cap);
@@ -80,14 +80,27 @@ void			ft_print_all(t_select **select)
 {
 	t_select	*s;
 	int			i;
+	int			j;
 	int			len;
 	char		*cap;
 
 	i = 0;
 	s = *select;
+	j = s->height;
 	cap = NULL;
+	if (!ft_find_window_len(select))
+	{
+		ft_putstr("Screen too small");
+		return ;
+	}
 	while (s->args[i].str)
 	{
+		if (i >= j - 2)
+		{
+			ft_putstr(tgoto(tgetstr("cm", NULL), 0, i));
+			ft_putstr(tgetstr("ce", NULL));
+			j += j;
+		}
 		len = s->max_strlen - ft_strlen(s->args[i].str) + 3;
 		if (i == (s->cursor_line - 1))
 		{
