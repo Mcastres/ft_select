@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:43:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 11:38:06 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:14:17 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <termcap.h>
 # include <term.h>
+# include <signal.h>
 
 # define RED   "\x1B[31m"
 # define GRN   "\x1B[32m"
@@ -48,6 +49,10 @@ typedef struct		s_select
 	int				max_strlen;
 }					t_select;
 
+void 				suspended(void);
+void 				abort_term(void);
+t_select			*keep_term(t_select *select);
+int					ft_signal();
 int					ft_find_window_len(t_select **select);
 void				print(t_select **select);
 void				ft_putab_inline_c(char **content);

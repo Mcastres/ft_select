@@ -6,11 +6,17 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 09:43:27 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:25:14 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void 		abort_term(void)
+{
+	suspended();
+	exit(EXIT_FAILURE);
+}
 
 void		ft_modify_args(t_select **select, int nb)
 {
@@ -77,7 +83,11 @@ int			main(int ac, char **av, char **env)
 	{
 		select->env = ft_tabdup(env);
 		ft_init_args(&select, (av + 1), ac);
+		keep_term(select);
+		ft_signal(av);
 		ft_select(&select);
 	}
+	else
+		ft_putendl("Usage: ./ft_select [argv1] ...");
 	return (0);
 }

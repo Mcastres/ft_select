@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:06:21 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 17:40:49 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 10:59:37 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ void			ft_print_all(t_select **select)
 		if (i == (s->cursor_line - 1))
 		{
 			ft_putstr("  > ");
+			ft_putstr(C_CYAN);
 			print_again(select, i, cap);
+			ft_putstr(C_NONE);
 			ft_putchar(' ');
 			ft_putstr("<\n");
 		}

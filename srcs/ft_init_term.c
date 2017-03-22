@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 15:04:38 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:14:56 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static int		ft_modif_term(t_select **select)
 	}
 	tputs(tgetstr("ti", NULL), 0, ft_putc);
 	tputs(tgetstr("vi", NULL), 0, ft_putc);
-	ft_putstr("Change successfully apply\n");
 	return (0);
 }
 
