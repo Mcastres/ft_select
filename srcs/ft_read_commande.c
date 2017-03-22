@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:00:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 09:57:53 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:18:01 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		ft_delete(t_select **select)
 		ft_putstr("Cannot clean screen\n");
 	else
 		tputs(cap, 0, ft_putc);
-	ft_modify_args(select, s->nb_args);
+	ft_modify_args(select, -1, 0);
 	ft_print_all(select);
 }
 
@@ -49,7 +49,6 @@ void			ft_escape(t_select **select, char **content)
 	if (content)
 	{
 		ft_putab_inline(content);
-		ft_putchar('\n');
 		ft_freetab((void **)content, ft_tablen(content));
 	}
 	exit(0);

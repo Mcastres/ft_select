@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 11:33:15 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 17:38:33 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 14:48:25 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	ft_putab_inline_c(char **content)
 
 int		ft_putc(int c)
 {
-	write(1, &c, 1);
+	write(2, &c, 1);
 	return (1);
 }

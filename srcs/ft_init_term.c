@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 13:14:56 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:57:39 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				ft_find_window_len(t_select **select)
 	int				col;
 
 	s = *select;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	ioctl(2, TIOCGWINSZ, &w);
 	s->width = w.ws_col;
 	s->height = w.ws_row;
 	col = s->nb_args / s->height;

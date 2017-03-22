@@ -6,13 +6,13 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 13:15:31 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:34:34 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void 	sig_handler(int signo);
+static void		sig_handler(int signo);
 
 t_select		*keep_term(t_select *select)
 {
@@ -23,7 +23,7 @@ t_select		*keep_term(t_select *select)
 	return (temp);
 }
 
-void 			suspended(void)
+void			suspended(void)
 {
 	t_select	*s;
 	char		cp[2];
@@ -39,16 +39,16 @@ void 			suspended(void)
 	ioctl(0, TIOCSTI, cp);
 }
 
-static void 	continue_term(void)
+static void		continue_term(void)
 {
 	t_select	*s;
 
 	s = keep_term(NULL);
 	ft_init_term(&s);
-	ft_putstr("ft_select restored, press an arrow key");
+	ft_putstr_fd("ft_select restored, press an arrow key", 2);
 }
 
-static void 	sig_handler(int signo)
+static void		sig_handler(int signo)
 {
 	if (signo == SIGCONT)
 		continue_term();
@@ -61,10 +61,10 @@ static void 	sig_handler(int signo)
 int				ft_signal(void)
 {
 	if (signal(SIGCONT, sig_handler) == SIG_ERR)
-		ft_putstr("\ncan't catch SIGCONT\n");
+		ft_putstr_fd("\ncan't catch SIGCONT\n", 2);
 	if (signal(SIGTSTP, sig_handler) == SIG_ERR)
-		ft_putstr("\ncan't catch SIGTSTP\n");
+		ft_putstr_fd("\ncan't catch SIGTSTP\n", 2);
 	if (signal(SIGINT, sig_handler) == SIG_ERR)
-		ft_putstr("\ncan't catch SIGTSTP\n");
-	return 0;
+		ft_putstr_fd("\ncan't catch SIGINT\n", 2);
+	return (0);
 }

@@ -6,44 +6,55 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 13:25:14 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:33:54 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void 		abort_term(void)
+void		abort_term(void)
 {
 	suspended();
 	exit(EXIT_FAILURE);
 }
 
-void		ft_modify_args(t_select **select, int nb)
+static void	ft_modify(t_select **select)
 {
 	t_select	*s;
-	t_args		*new;
-	int			i;
-	int			j;
 
 	s = *select;
-	i = -1;
-	j = 0;
-	if (!(new = (t_args *)malloc(sizeof(t_args) * nb)))
-		return ;
-	new[nb].str = NULL;
-	while (++i < nb)
-	{
-		if (i != s->cursor_line - 1)
-			new[j].str = ft_strdup(s->args[i].str);
-		else
-			j--;
-		new[i].select = 0;
-		j++;
-	}
-	s->args = new;
 	s->nb_args--;
 	if (s->cursor_line - 1 == s->nb_args)
 		s->cursor_line--;
+}
+
+void		ft_modify_args(t_select **select, int i, int j)
+{
+	t_select	*s;
+	t_args		*new;
+
+	s = *select;
+	if (!(new = (t_args *)malloc(sizeof(t_args) * s->nb_args)))
+		return ;
+	while (++i < s->nb_args)
+	{
+		if (i != s->cursor_line - 1)
+		{
+			new[j].str = ft_strdup(s->args[i].str);
+			ft_strdel(&s->args[i].str);
+		}
+		else
+		{
+			j--;
+			ft_strdel(&s->args[i].str);
+		}
+		new[j].select = 0;
+		j++;
+	}
+	new[j].str = NULL;
+	free(s->args);
+	s->args = new;
+	ft_modify(select);
 }
 
 static int	ft_init_args(t_select **select, char **av, int ac)

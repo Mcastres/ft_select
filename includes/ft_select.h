@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:43:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 13:14:17 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:31:05 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ typedef struct		s_select
 	int				max_strlen;
 }					t_select;
 
-void 				suspended(void);
-void 				abort_term(void);
+void				suspended(void);
+void				abort_term(void);
 t_select			*keep_term(t_select *select);
 int					ft_signal();
 int					ft_find_window_len(t_select **select);
 void				print(t_select **select);
 void				ft_putab_inline_c(char **content);
-void				ft_modify_args(t_select **select, int nb);
+void				ft_modify_args(t_select **select, int i, int j);
 void				ft_select(t_select **select);
 void				ft_init_term(t_select **select);
 void				ft_read_commande(t_select **select);
