@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:06:21 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/24 15:40:39 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 17:16:20 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void			ft_print_all(t_select **select, int i, int column)
 	cap = NULL;
 	if (!ft_find_window_len(select))
 	{
-		ft_putstr_fd("¯\\_(ツ)_/¯ Screen too small", 2);
+		ft_putstr_fd("Screen too small", 2);
 		return ;
 	}
 	while (i < s->nb_args)

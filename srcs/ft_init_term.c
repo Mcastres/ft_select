@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/24 13:39:03 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 17:16:25 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int				ft_find_window_len(t_select **select)
 	s->width = w.ws_col;
 	s->height = w.ws_row;
 	col = s->nb_args / s->height;
+	if (s->max_strlen > s->width - 10)
+		return (0);
 	return ((col * s->max_strlen + 5) < s->width);
 }
 
