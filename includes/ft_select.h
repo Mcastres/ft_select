@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:43:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/24 14:27:14 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:48:12 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_select
 	int				max_strlen;
 }					t_select;
 
+void				color(mode_t mode);
 void				abort_term(void);
 t_select			*keep_term(t_select *select);
 int					ft_signal();

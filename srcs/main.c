@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/24 14:20:31 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 15:29:40 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void		ft_modify_args(t_select **select, int i, int j)
 		{
 			new[j].str = ft_strdup(s->args[i].str);
 			ft_strdel(&s->args[i].str);
+			new[j].select = s->args[i].select;
 		}
 		else
 		{
 			j--;
 			ft_strdel(&s->args[i].str);
 		}
-		new[j].select = 0;
 		j++;
 	}
 	new[j].str = NULL;

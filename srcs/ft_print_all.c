@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:06:21 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/24 14:05:43 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 15:40:39 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static void		print_else(t_select **select, int i, char *cap, int len)
 {
 	t_select	*s;
+	struct stat	sb;
 
 	s = *select;
+	lstat(s->args[i].str, &sb);
 	ft_putstr_fd("    ", 2);
 	if (s->args[i].select == 1)
 	{
@@ -25,14 +27,11 @@ static void		print_else(t_select **select, int i, char *cap, int len)
 		else
 			tputs(cap, 0, ft_putc);
 	}
+	color(sb.st_mode);
 	ft_putstr_fd(s->args[i].str, 2);
+	ft_putstr_fd(C_NONE, 2);
 	if (s->args[i].select == 1)
-	{
-		if ((cap = tgetstr("me", NULL)) == NULL)
-			ft_putstr("Cannot set the end of all appearance mode\n");
-		else
-			tputs(cap, 0, ft_putc);
-	}
+		tputs(tgetstr("me", NULL), 0, ft_putc);
 	while (len-- > 0)
 		ft_putchar_fd(' ', 2);
 	ft_putchar_fd('\n', 2);
@@ -68,9 +67,7 @@ static void		print_again(t_select **select, int i, char *cap)
 		ft_putstr("Cannot set the underline mode\n");
 	else
 		tputs(cap, 0, ft_putc);
-	ft_putstr_fd(C_CYAN, 2);
 	ft_putstr_fd(s->args[i].str, 2);
-	ft_putstr_fd(C_NONE, 2);
 	if ((cap = tgetstr("ue", NULL)) == NULL)
 		ft_putstr("Cannot set the end of underline mode\n");
 	else
@@ -89,9 +86,7 @@ static void		ft_hamza(t_select **select, int i, int column, int temp)
 	if (i == (s->cursor_line - 1))
 	{
 		ft_putstr_fd("  > ", 2);
-		ft_putstr_fd(C_CYAN, 2);
 		print_again(select, i, NULL);
-		ft_putstr_fd(C_NONE, 2);
 		ft_putstr_fd(" <", 2);
 	}
 	else
