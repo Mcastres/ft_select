@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:40:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 17:33:54 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:20:31 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void		abort_term(void)
 {
-	suspended();
+	t_select	*s;
+
+	s = keep_term(NULL);
+	s->default_term.c_lflag |= (ICANON | ECHO);
+	tcsetattr(0, 0, &(s->default_term));
+	ft_putstr_fd(tgetstr("te", NULL), 2);
+	ft_putstr_fd(tgetstr("ve", NULL), 2);
 	exit(EXIT_FAILURE);
 }
 

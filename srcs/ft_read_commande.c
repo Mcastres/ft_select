@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:00:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 17:18:01 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:04:55 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		ft_delete(t_select **select)
 	else
 		tputs(cap, 0, ft_putc);
 	ft_modify_args(select, -1, 0);
-	ft_print_all(select);
+	ft_print_all(select, 0, 0);
 }
 
 void			ft_escape(t_select **select, char **content)
@@ -79,7 +79,7 @@ static void		read_again(t_select **select, char *cap)
 		ft_putstr("Cannot clear screen\n");
 	else
 		tputs(cap, 0, ft_putc);
-	ft_print_all(select);
+	ft_print_all(select, 0, 0);
 }
 
 void			ft_read_commande(t_select **select)

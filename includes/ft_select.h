@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:43:05 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 17:31:05 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:11:10 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void				ft_init_term(t_select **select);
 void				ft_read_commande(t_select **select);
 void				ft_valide_select(t_select **select);
 void				ft_arrow_key(t_select **select, char *buf);
-void				ft_print_all(t_select **select);
+void				ft_print_all(t_select **select, int i, int column);
 void				ft_escape(t_select **select, char **content);
 void				ft_valide_select(t_select **select);
 int					ft_putc(int c);

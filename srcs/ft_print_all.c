@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 13:06:21 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 17:33:19 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:05:43 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ static void		print_again(t_select **select, int i, char *cap)
 		ft_putstr("Cannot set the underline mode\n");
 	else
 		tputs(cap, 0, ft_putc);
+	ft_putstr_fd(C_CYAN, 2);
 	ft_putstr_fd(s->args[i].str, 2);
+	ft_putstr_fd(C_NONE, 2);
 	if ((cap = tgetstr("ue", NULL)) == NULL)
 		ft_putstr("Cannot set the end of underline mode\n");
 	else
@@ -76,46 +78,48 @@ static void		print_again(t_select **select, int i, char *cap)
 	print_close(select, i, cap);
 }
 
-void			ft_print_all(t_select **select)
+static void		ft_hamza(t_select **select, int i, int column, int temp)
 {
 	t_select	*s;
-	int			i;
-	int			j;
-	int			temp;
 	int			len;
+
+	s = *select;
+	tputs(tgoto(tgetstr("cm", NULL), column, temp), 0, ft_putc);
+	len = s->max_strlen - ft_strlen(s->args[i].str);
+	if (i == (s->cursor_line - 1))
+	{
+		ft_putstr_fd("  > ", 2);
+		ft_putstr_fd(C_CYAN, 2);
+		print_again(select, i, NULL);
+		ft_putstr_fd(C_NONE, 2);
+		ft_putstr_fd(" <", 2);
+	}
+	else
+		print_else(select, i, NULL, len);
+}
+
+void			ft_print_all(t_select **select, int i, int column)
+{
+	t_select	*s;
+	int			temp;
 	char		*cap;
 
-	i = 0;
 	temp = 0;
 	s = *select;
-	j = s->height;
 	cap = NULL;
 	if (!ft_find_window_len(select))
 	{
-		ft_putstr_fd("Screen too small", 2);
+		ft_putstr_fd("¯\\_(ツ)_/¯ Screen too small", 2);
 		return ;
 	}
-	while (s->args[i].str)
+	while (i < s->nb_args)
 	{
-		j = 1;
+		ft_hamza(select, i, column, temp);
 		if (temp >= s->height - 2)
 		{
-			ft_putstr_fd(tgoto(tgetstr("cm", NULL), 0, j), 2);
-			j++;
+			column += s->max_strlen + 5;
 			temp = -1;
 		}
-		len = s->max_strlen - ft_strlen(s->args[i].str) + 3;
-		if (i == (s->cursor_line - 1))
-		{
-			ft_putstr_fd("  > ", 2);
-			ft_putstr_fd(C_CYAN, 2);
-			print_again(select, i, cap);
-			ft_putstr_fd(C_NONE, 2);
-			ft_putchar(' ');
-			ft_putstr_fd("<\n", 2);
-		}
-		else
-			print_else(select, i, cap, len);
 		i++;
 		temp++;
 	}

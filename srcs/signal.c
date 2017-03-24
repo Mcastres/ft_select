@@ -6,13 +6,11 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 15:47:50 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/22 17:34:34 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:22:37 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-static void		sig_handler(int signo);
 
 t_select		*keep_term(t_select *select)
 {
@@ -23,7 +21,7 @@ t_select		*keep_term(t_select *select)
 	return (temp);
 }
 
-void			suspended(void)
+static void		suspended(void)
 {
 	t_select	*s;
 	char		cp[2];

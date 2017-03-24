@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 11:48:31 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/20 16:27:39 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 12:02:28 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_up_arrow(t_select **select)
 		s->cursor_line = s->nb_args;
 	else
 		s->cursor_line--;
-	ft_print_all(select);
+	ft_print_all(select, 0, 0);
 }
 
 static void	ft_down_arrow(t_select **select)
@@ -43,7 +43,7 @@ static void	ft_down_arrow(t_select **select)
 		s->cursor_line = 1;
 	else
 		s->cursor_line++;
-	ft_print_all(select);
+	ft_print_all(select, 0, 0);
 }
 
 void		ft_arrow_key(t_select **select, char *buf)

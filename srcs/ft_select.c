@@ -6,7 +6,7 @@
 /*   By: hmadad <hmadad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 11:16:31 by hmadad            #+#    #+#             */
-/*   Updated: 2017/03/21 11:34:08 by mcastres         ###   ########.fr       */
+/*   Updated: 2017/03/24 12:19:17 by mcastres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	ft_select(t_select **select)
 		ft_putstr("Cannot disabled margin auto\n");
 	else
 		tputs(cap, 0, ft_putc);
-	ft_print_all(select);
+	ft_print_all(select, 0, 0);
 	ft_read_commande(select);
 }
